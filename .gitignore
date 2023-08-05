@@ -1,0 +1,5 @@
+*.idea/
+*part*/
+cmake-build-debug/
+a.out
+pa_stdout.txt
