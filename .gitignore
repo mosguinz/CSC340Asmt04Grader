@@ -4,6 +4,7 @@ cmake-build-debug/
 a.out
 pa_stdout.txt
 *.gch
+.DS_Store
 
 # Student-edited files
 Assignment-04-Code/Include.h
