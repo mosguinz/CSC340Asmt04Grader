@@ -15,7 +15,15 @@ run_diff() {
   rm a.txt
 }
 
+check_recursive() {
+  src=(*[aA]/LinkedBag340.cpp)
+  vim -c 'set hlsearch | /getCurrentSize340Recursive' "${src[@]}"
+  vim -c 'set hlsearch | /getFrequencyOf340Recursive' "${src[@]}"
+  vim -c 'set hlsearch | /removeRandom340' "${src[@]}"
+}
+
 run_diff
+check_recursive
 
 while true; do
   echo "1: Rerun with last outfile"
@@ -27,10 +35,12 @@ while true; do
   case $choice in
     1)
       run_diff
+      check_recursive
       ;;
     2)
       g++ -std=c++17 -- *[aA]/*.{cpp,h}
       run_diff
+      check_recursive
       ;;
     3)
       break
