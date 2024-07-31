@@ -7,11 +7,11 @@ g++ -std=c++17 Assignment-04-Code/*.h Assignment-04-Code/*.cpp
 
 run_diff() {
   ./a.out > a.txt
-  vimdiff -c "set diffopt+=iwhiteall foldlevel=99999" a.txt pa_stdout_1.txt
+  vimdiff -c "set diffopt+=iwhiteall" a.txt pa_stdout_1.txt
   rm a.txt
 
   ./a.out > a.txt
-  vimdiff -c "set diffopt+=iwhiteall foldlevel=99999" a.txt pa_stdout_2.txt
+  vimdiff -c "set diffopt+=iwhiteall" a.txt pa_stdout_2.txt
   rm a.txt
 }
 
