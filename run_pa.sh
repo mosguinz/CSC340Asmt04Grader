@@ -1,9 +1,13 @@
 #!/bin/zsh
 setopt nullglob
 
-rm -f Assignment-04-Code/{Include.h,LinkedBag340.cpp}
+rm -f Assignment-04-Code/{Include.h,LinkedBag340.cpp,*.gch}
 cp -- *[aA]/{Include.h,LinkedBag340.cpp} Assignment-04-Code/
 g++ -std=c++17 Assignment-04-Code/*.h Assignment-04-Code/*.cpp
+
+if [ $? -ne 0 ]; then
+  exit
+fi
 
 run_diff() {
   ./a.out > a.txt
