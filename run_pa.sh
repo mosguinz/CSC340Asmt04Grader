@@ -1,14 +1,6 @@
 #!/bin/zsh
 setopt nullglob
 
-rm -f Assignment-04-Code/{Include.h,LinkedBag340.cpp,*.gch}
-cp -- *[aA]/{Include.h,LinkedBag340.cpp} Assignment-04-Code/
-g++ -std=c++17 Assignment-04-Code/*.h Assignment-04-Code/*.cpp
-
-if [ $? -ne 0 ]; then
-  exit
-fi
-
 run_diff() {
   ./a.out > a.txt
   vimdiff -c "set diffopt+=iwhiteall" a.txt pa_stdout_1.txt
@@ -26,8 +18,16 @@ check_recursive() {
   vim -c 'set hlsearch | /removeRandom340' "${src[@]}"
 }
 
-run_diff
-check_recursive
+rm -f Assignment-04-Code/{Include.h,LinkedBag340.cpp,*.gch}
+cp -- *[aA]/{Include.h,LinkedBag340.cpp} Assignment-04-Code/
+g++ -std=c++17 Assignment-04-Code/*.h Assignment-04-Code/*.cpp
+
+if [ $? -ne 0 ]; then
+  echo "*** Build failed with student submitted Include.h and LinkedBag340.cpp ***"
+  else
+    run_diff
+    check_recursive
+fi
 
 while true; do
   echo "1: Rerun with last outfile"
@@ -52,5 +52,5 @@ while true; do
   esac
 done
 
-rm -f a.out a.txt
+rm -f a.out a.txt **/*.gch*
 
